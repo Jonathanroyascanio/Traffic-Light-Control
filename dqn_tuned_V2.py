@@ -1,4 +1,5 @@
 import os
+os.environ['SUMO_HOME'] = '/opt/homebrew/share/sumo'
 import traci
 import stable_baselines3
 from sumo_rl import SumoEnvironment
@@ -19,14 +20,13 @@ if __name__=="__main__":
         os.makedirs(models_dir)
     if not os.path.exists(logs_dir):
         os.makedirs(logs_dir)
-    os.environ['SUMO_HOME'] = '/opt/homebrew/share/sumo'
     # Create custom environment with our configuration xml files and the change in cumulative vehicle delay as a reward function
     env = Monitor(SumoEnvironment(
         net_file="./environments/single-intersection.net.xml",
         route_file="./environments/single-intersection-vhvh.rou.xml",
         single_agent=True,
         reward_fn='diff-waiting-time',
-        use_gui=False,
+        use_gui=True,
         num_seconds=steps_per_episode,
         begin_time=0
         ), logs_dir)

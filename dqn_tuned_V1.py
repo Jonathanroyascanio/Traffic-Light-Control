@@ -26,7 +26,7 @@ if __name__=="__main__":
         route_file="./environments/single-intersection-vhvh.rou.xml",
         single_agent=True,
         reward_fn='diff-waiting-time',
-        use_gui=False,
+        use_gui=True,
         num_seconds=steps_per_episode,
         begin_time=0
         ), logs_dir)
